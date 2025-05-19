@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded());
 const serverPort = process.env.SERVER_PORT || 3000;
 
 const CategoryRoute = require('./route/CategoryRoute');
+const CountryRoute = require('./route/CountryRoute');
+const DiscountRoute = require('./route/DiscountRoute');
 
 try{
     mongoose.connect(`${process.env.DB_URL}:${process.env.DB_PORT}/${process.env.DB_NAME}`)   //127.0.0.1 localhost IP
@@ -25,3 +27,5 @@ app.get('/test-api', (request, response) => {
 
 //http://localhost:3000/api/v1/categories/create-category (POST)
 app.use('/api/v1/categories', CategoryRoute);
+app.use('/api/v1/countries', CountryRoute);
+app.use('/api/v1/discounts', DiscountRoute);
