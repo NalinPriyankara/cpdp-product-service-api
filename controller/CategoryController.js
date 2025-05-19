@@ -33,7 +33,7 @@ const createCategory = async (request, response) => {
             ]
         });
         const saveData = await category.save();
-        return response.status(201).json({code:201, message:"Customer has been saved.", data:saveData});
+        return response.status(201).json({code:201, message:"Category has been saved.", data:saveData});
     }catch (e) {
         response.status(500).json({code:500, message:'Server Error.', error:err});
     }
@@ -50,7 +50,7 @@ const updateCategory = async (request, response) => {
                 categoryName:categoryName
             }
         },{new: true});
-        return response.status(200).json({code:200, message:"Customer has been updated.", data:updateData});
+        return response.status(200).json({code:200, message:"Category has been updated.", data:updateData});
     }catch (e) {
         response.status(500).json({code:500, message:'Server Error.', error:e});
     }
@@ -62,14 +62,25 @@ const deleteCategory = async (request, response) => {
             return response.status(400).json({code:400, message:"Some fields are missing.", data:null});
         }
         const deletedData = await CategorySchema.findOneAndDelete({'_id':request.params.id});
-        return response.status(204).json({code:204, message:"Customer has been deleted.", data:deletedData});
+        return response.status(204).json({code:204, message:"Category has been deleted.", data:deletedData});
     }catch (e) {
         response.status(500).json({code:500, message:'Server Error.', error:e});
     }
 }
 //GET
 const findCategoryById = async (request, response) => {
-    console.log(request.body);
+    try{
+        if (!request.params.id) {
+            return response.status(400).json({code:400, message:"Some fields are missing.", data:null});
+        }
+        const categoryData = await CategorySchema.findById({'_id':request.params.id});
+        if (categoryData){
+            return response.status(200).json({code:200, message:"Category data.", data:categoryData});
+        }
+        return response.status(404).json({code:404, message:"Category data not found.", data:null});
+    }catch (e) {
+        response.status(500).json({code:500, message:'Server Error.', error:e});
+    }
 }
 //GET
 const findAllCategories = async (request, response) => {
