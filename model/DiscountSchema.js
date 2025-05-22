@@ -18,4 +18,4 @@ const DiscountSchema = new mongoose.Schema({
         type: Date
     }
 });
-model.exports = mongoose.model('discounts', DiscountSchema);
+module.exports = mongoose.model('discounts', DiscountSchema);

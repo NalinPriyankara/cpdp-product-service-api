@@ -1,4 +1,4 @@
-const CountrySchema = require('../models/CountrySchema');
+const CountrySchema = require('../model/CountrySchema');
 const CategorySchema = require("../model/CategorySchema");
 
 const createCountry = async (request, response) => {

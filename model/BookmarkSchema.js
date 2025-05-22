@@ -11,4 +11,4 @@ const BookmarkSchema = new mongoose.Schema({
         type: Date
     }
 });
-module.exports = mongoose.model('category', BookmarkSchema);
+module.exports = mongoose.model('bookmarks', BookmarkSchema);
